@@ -15,7 +15,7 @@ export class BPMNWorkflowComponent implements AfterContentInit, AfterViewInit, O
   private bpmnJS: BpmnJS;
 
   @ViewChild('flowDiagram') private flowDiagram: ElementRef;
-  @Output() public importDone: EventEmitter<any> = new EventEmitter();
+  @Output() private importDone: EventEmitter<any> = new EventEmitter();
   @Input() private url: string;
 
   constructor(private http: HttpClient) {
@@ -33,8 +33,6 @@ export class BPMNWorkflowComponent implements AfterContentInit, AfterViewInit, O
 
   ngAfterViewInit() {
     console.log('After View INIT');
-    //this.bpmnJS._container.innerHTML = this.bpmnJS._container.innerHTML.replace(/\<a\ href\=\"http\:\/\/bpmn\.io\".*\<\/a\>/gm, '');
-    console.log(this.bpmnJS);
     this.bpmnJS.attachTo(this.flowDiagram.nativeElement);
   }
 

@@ -7,7 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'bpmn-angular-app';
-  diagramUrl = 'https://cdn.staticaly.com/gh/bpmn-io/bpmn-js-examples/dfceecba/starter/diagram.bpmn';
+  diagramUrl = './assets/s38-demo-A2ETool.bpmn20.xml';
+
   importError?: Error;
 
   handleImported(event) {

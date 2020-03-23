@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:flowable="http://flowable.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.flowable.org/processdef">
+  <process id="S38A2E" name="A2EDemoSprint38" isExecutable="true">
+    <ioSpecification>
+      <dataInput id="urlQCPJenkinsJob" name="urlQCPJenkinsJob" itemSubjectRef="xsd:string"/>
+      <dataInput id="urlQCPFallbackJenkinsJob" name="urlQCPFallbackJenkinsJob" itemSubjectRef="xsd:string"/>
+      <dataInput id="QCPJobResult" name="QCPJobResult" itemSubjectRef="xsd:string"/>
+      <dataInput id="QCPFallbackJobResult" name="QCPFallbackJobResult" itemSubjectRef="xsd:string"/>
+      <dataInput id="QCPDelay" name="QCPDelay" itemSubjectRef="xsd:string"/>
+      <dataInput id="QCPFallbackDelay" name="QCPFallbackDelay" itemSubjectRef="xsd:string"/>
+      <dataInput id="a2etool_test_script_setting" name="a2etool_test_script_setting" itemSubjectRef="xsd:string"/>
+      <dataInput id="a2etool_target" name="a2etool_target" itemSubjectRef="xsd:string"/>
+      <dataInput id="a2etool_callback" name="a2etool_callback" itemSubjectRef="xsd:string"/>
+
+      <dataOutput id="QCPTaskResult" name="QCPTaskResult" itemSubjectRef="xsd:string"/>
+      <dataOutput id="QCPFallbackTaskResult" name="QCPFallbackTaskResult" itemSubjectRef="xsd:string"/>
+      <dataOutput id="task_result" name="task_result" itemSubjectRef="xsd:string"/>
+
+      <inputSet>
+        <dataInputRefs>urlQCPJenkinsJob</dataInputRefs>
+        <dataInputRefs>urlQCPFallbackJenkinsJob</dataInputRefs>
+        <dataInputRefs>QCPJobResult</dataInputRefs>
+        <dataInputRefs>QCPFallbackJobResult</dataInputRefs>
+        <dataInputRefs>QCPDelay</dataInputRefs>
+        <dataInputRefs>QCPFallbackDelay</dataInputRefs>
+        <dataInputRefs>a2etool_test_script_setting</dataInputRefs>
+        <dataInputRefs>a2etool_target</dataInputRefs>
+        <dataInputRefs>a2etool_callback</dataInputRefs>
+      </inputSet>
+
+      <outputSet>
+        <dataOutputRefs>QCPTaskResult</dataOutputRefs>
+        <dataOutputRefs>QCPFallbackTaskResult</dataOutputRefs>
+        <dataOutputRefs>task_result</dataOutputRefs>
+      </outputSet>
+
+    </ioSpecification>
+
+    <startEvent id="start" name="START" flowable:formFieldValidation="true"></startEvent>
+    <userTask id="QCPDeploy" name="jenkins" flowable:formFieldValidation="true">
+      <ioSpecification>
+        <dataInput id="urlQCPJenkinsJob_task" name="urlJenkinsJob" itemSubjectRef="xsd:string"/>
+        <dataInput id="QCPJobResult_task" name="exit_status" itemSubjectRef="xsd:string"/>
+        <dataInput id="QCPDelay_task" name="delay" itemSubjectRef="xsd:string"/>
+        <dataOutput id="QCPTaskStatus" name="JOB_STATUS" itemSubjectRef="xsd:string"/>
+        <inputSet>
+          <dataInputRefs>urlQCPJenkinsJob_task</dataInputRefs>
+          <dataInputRefs>QCPJobResult_task</dataInputRefs>
+          <dataInputRefs>QCPDelay_task</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>QCPTaskStatus</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>urlQCPJenkinsJob</sourceRef>
+        <targetRef>urlQCPJenkinsJob_task</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>QCPJobResult</sourceRef>
+        <targetRef>QCPJobResult_task</targetRef>
+      </dataInputAssociation>
+            <dataInputAssociation>
+        <sourceRef>QCPDelay</sourceRef>
+        <targetRef>QCPDelay_task</targetRef>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>QCPTaskStatus</sourceRef>
+        <targetRef>QCPTaskResult</targetRef>
+      </dataOutputAssociation>
+    </userTask>
+    <userTask id="QCPA2ETest" name="a2ETool" flowable:formFieldValidation="true">
+      <ioSpecification>
+        <dataInput id="a2etool_test_script_setting_task" name="a2etool_test_script_setting_task" itemSubjectRef="xsd:string"/>
+        <dataInput id="a2etool_target_task" name="a2etool_target_task" itemSubjectRef="xsd:string"/>
+        <dataInput id="a2etool_callback_task" name="a2etool_callback_task" itemSubjectRef="xsd:string"/>
+        <dataOutput id="JOB_STATUS" name="JOB_STATUS" itemSubjectRef="xsd:string"/>
+        <inputSet>
+          <dataInputRefs>a2etool_test_script_setting_task</dataInputRefs>
+          <dataInputRefs>a2etool_target_task</dataInputRefs>
+          <dataInputRefs>a2etool_callback_task</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>JOB_STATUS</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+        <dataInputAssociation>
+          <sourceRef>a2etool_test_script_setting</sourceRef>
+          <targetRef>a2etool_test_script_setting_task</targetRef>
+        </dataInputAssociation>
+        <dataInputAssociation>
+          <sourceRef>a2etool_target</sourceRef>
+          <targetRef>a2etool_target_task</targetRef>
+        </dataInputAssociation>
+        <dataInputAssociation>
+          <sourceRef>a2etool_callback</sourceRef>
+          <targetRef>a2etool_callback_task</targetRef>
+        </dataInputAssociation>
+        <dataOutputAssociation>
+          <sourceRef>JOB_STATUS</sourceRef>
+          <targetRef>task_result</targetRef>
+        </dataOutputAssociation>
+    </userTask>
+
+    <userTask id="QCPFallback" name="jenkins" flowable:formFieldValidation="true">
+      <ioSpecification>
+        <dataInput id="urlQCPFallbackJenkinsJob_task" name="urlJenkinsJob" itemSubjectRef="xsd:string"/>
+        <dataInput id="QCPFallbackJobResult_task" name="exit_status" itemSubjectRef="xsd:string"/>
+        <dataInput id="QCPFallbackDelay_task" name="delay" itemSubjectRef="xsd:string"/>
+        <dataOutput id="QCPFallbackTaskStatus" name="JOB_STATUS" itemSubjectRef="xsd:string"/>
+        <inputSet>
+          <dataInputRefs>urlQCPFallbackJenkinsJob_task</dataInputRefs>
+          <dataInputRefs>QCPFallbackJobResult_task</dataInputRefs>
+          <dataInputRefs>QCPFallbackDelay_task</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>QCPFallbackTaskStatus</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>urlQCPFallbackJenkinsJob</sourceRef>
+        <targetRef>urlQCPFallbackJenkinsJob_task</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>QCPFallbackJobResult</sourceRef>
+        <targetRef>QCPFallbackJobResult_task</targetRef>
+      </dataInputAssociation>
+            <dataInputAssociation>
+        <sourceRef>QCPFallbackDelay</sourceRef>
+        <targetRef>QCPFallbackDelay_task</targetRef>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>QCPFallbackTaskStatus</sourceRef>
+        <targetRef>QCPFallbackTaskResult</targetRef>
+      </dataOutputAssociation>
+
+    </userTask>
+
+    <endEvent id="success" name="SUCCESS"></endEvent>
+    <endEvent id="failure" name="FAILURE">
+      <errorEventDefinition></errorEventDefinition>
+    </endEvent>
+    <sequenceFlow id="startToQCP" name="Deploy on QCP" sourceRef="start" targetRef="QCPDeploy"></sequenceFlow>
+    <sequenceFlow id="QCPToA2E" name="Run A2E Test on QCP" sourceRef="QCPDeploy" targetRef="QCPA2ETest">
+      <conditionExpression xsi:type="tFormalExpression">${QCPTaskResult == "SUCCESS"}</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="A2EToFallback" name="Test Failed - Fallback" sourceRef="QCPA2ETest" targetRef="QCPFallback">
+      <conditionExpression xsi:type="tFormalExpression">${task_result == "error" || task_result == "aborted" }</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="FallbackToFailure" name="Release Failed" sourceRef="QCPFallback" targetRef="failure"></sequenceFlow>
+    <sequenceFlow id="QCPToFailure" name="Deploy Failed" sourceRef="QCPDeploy" targetRef="failure">
+      <conditionExpression xsi:type="tFormalExpression">${QCPTaskResult == "FAILURE" || QCPTaskResult == "ABORTED" }</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="A2EToSuccess" name="Release Completed" sourceRef="QCPA2ETest" targetRef="success">
+      <conditionExpression xsi:type="tFormalExpression">${task_result == "ended"}</conditionExpression>
+    </sequenceFlow>
+  </process>
+   <bpmndi:BPMNDiagram id="BPMNDiagram_S38A2E">
+    <bpmndi:BPMNPlane id="BPMNPlane_S38A2E" bpmnElement="S38A2E">
+      <bpmndi:BPMNShape id="BPMNShape_start" bpmnElement="start">
+        <omgdc:Bounds x="135" y="130" width="30" height="30" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="132" y="173" width="36" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_QCPDeploy" bpmnElement="QCPDeploy">
+        <omgdc:Bounds x="330" y="105" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_QCPA2ETest" bpmnElement="QCPA2ETest">
+        <omgdc:Bounds x="630" y="105" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_QCPFallback" bpmnElement="QCPFallback">
+        <omgdc:Bounds x="630" y="345" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_success" bpmnElement="success">
+        <omgdc:Bounds x="885" y="131" width="28" height="28" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="872" y="173" width="54" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_failure" bpmnElement="failure">
+        <omgdc:Bounds x="366" y="371" width="28" height="28" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="357" y="413" width="46" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_A2EToSuccess" bpmnElement="A2EToSuccess">
+        <omgdi:waypoint x="729.949999999868" y="145" />
+        <omgdi:waypoint x="885" y="145" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="781" y="113" width="54" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_A2EToFallback" bpmnElement="A2EToFallback">
+        <omgdi:waypoint x="680" y="184.95" />
+        <omgdi:waypoint x="680" y="345" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="693" y="261" width="54" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_QCPToA2E" bpmnElement="QCPToA2E">
+        <omgdi:waypoint x="429.9499999999403" y="145" />
+        <omgdi:waypoint x="629.9999999999574" y="145" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="489" y="113" width="83" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_FallbackToFailure" bpmnElement="FallbackToFailure">
+        <omgdi:waypoint x="629.9999999999452" y="385" />
+        <omgdi:waypoint x="393.94991976023886" y="385" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_QCPToFailure" bpmnElement="QCPToFailure">
+        <omgdi:waypoint x="380" y="184.95" />
+        <omgdi:waypoint x="380" y="371" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="386" y="268" width="68" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_startToQCP" bpmnElement="startToQCP">
+        <omgdi:waypoint x="164.94999965443563" y="145" />
+        <omgdi:waypoint x="330" y="145" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

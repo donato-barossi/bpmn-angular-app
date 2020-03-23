@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:flowable="http://flowable.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.flowable.org/processdef">
+  <process id="S38WinAproach" name="WinAproachdemoSprint38" isExecutable="true">
+    <ioSpecification>
+      <dataInput id="ReleaseCRTitle" name="ReleaseCRTitle" itemSubjectRef="xsd:string"/>
+      <dataInput id="ReleaseCRDescription" name="ReleaseCRDescription" itemSubjectRef="xsd:string"/>
+      <dataInput id="ReleaseCRAssigneeName" name="ReleaseCRAssigneeName" itemSubjectRef="xsd:string"/>
+      <dataInput id="ReleaseCRAssigneeGroup" name="ReleaseCRAssigneeGroup" itemSubjectRef="xsd:string"/>
+      <dataInput id="ReleaseCRAction" name="ReleaseCRAction" itemSubjectRef="xsd:string"/>
+      <dataInput id="LoadTRTitle" name="LoadTRTitle" itemSubjectRef="xsd:string"/>
+      <dataInput id="LoadTRDescription" name="LoadTRDescription" itemSubjectRef="xsd:string"/>
+      <dataInput id="LoadTRAssigneeName" name="LoadTRAssigneeName" itemSubjectRef="xsd:string"/>
+      <dataInput id="LoadTRAssigneeGroup" name="LoadTRAssigneeGroup" itemSubjectRef="xsd:string"/>
+      <dataInput id="LoadTRTaskAction" name="LoadTRTaskAction" itemSubjectRef="xsd:string"/>
+      <dataInput id="DeployJenkinsJobUrl" name="DeployJenkinsJobUrl" itemSubjectRef="xsd:string"/>
+      <dataInput id="DeployJenkinsJobResult" name="DeployJenkinsJobResult" itemSubjectRef="xsd:string"/>
+      <dataInput id="DeployJenkinsJobDelay" name="DeployJenkinsJobDelay" itemSubjectRef="xsd:string"/>
+      <dataInput id="LoadTRFailedDescription" name="LoadTRFailedDescription" itemSubjectRef="xsd:string"/>
+      <dataInput id="LoadTRFailedStatus" name="LoadTRFailedStatus" itemSubjectRef="xsd:string"/>
+      <dataInput id="LoadTRFailedAction" name="LoadTRFailedAction" itemSubjectRef="xsd:string"/>
+      <dataInput id="LoadTRSucceedDescription" name="LoadTRSucceedDescription" itemSubjectRef="xsd:string"/>
+      <dataInput id="LoadTRSucceedStatus" name="LoadTRSucceedStatus" itemSubjectRef="xsd:string"/>
+      <dataInput id="LoadTRSucceedAction" name="LoadTRSucceedAction" itemSubjectRef="xsd:string"/>
+      <dataInput id="ReleaseCRCloseAction" name="ReleaseCRCloseAction" itemSubjectRef="xsd:string"/>
+
+      <dataOutput id="LoadTRSucceedResult" name="LoadTRSucceedResult" itemSubjectRef="xsd:string"/>
+      <dataOutput id="LoadTRFailedResult" name="LoadTRFailedResult" itemSubjectRef="xsd:string"/>
+      <dataOutput id="DeployJenkinsJobExitStatus" name="DeployJenkinsJobExitStatus" itemSubjectRef="xsd:string"/>
+      <dataOutput id="LoadTRTaskResult" name="LoadTRTaskResult" itemSubjectRef="xsd:string"/>
+      <dataOutput id="LoadTRRecordId" name="LoadTRRecordId" itemSubjectRef="xsd:string"/>
+      <dataOutput id="ReleaseCRCreationResult" name="ReleaseCRCreationResult" itemSubjectRef="xsd:string"/>
+      <dataOutput id="ReleaseCRRecordId" name="ReleaseCRRecordId" itemSubjectRef="xsd:string"/>
+      <dataOutput id="ReleaseCRCloseResult" name="ReleaseCRCloseResult" itemSubjectRef="xsd:string"/>
+
+      <inputSet>
+        <dataInputRefs>ReleaseCRTitle</dataInputRefs>
+        <dataInputRefs>ReleaseCRDescription</dataInputRefs>
+        <dataInputRefs>ReleaseCRAssigneeName</dataInputRefs>
+        <dataInputRefs>ReleaseCRAssigneeGroup</dataInputRefs>
+        <dataInputRefs>ReleaseCRAction</dataInputRefs>
+        <dataInputRefs>LoadTRTitle</dataInputRefs>
+        <dataInputRefs>LoadTRDescription</dataInputRefs>
+        <dataInputRefs>LoadTRAssigneeName</dataInputRefs>
+        <dataInputRefs>LoadTRAssigneeGroup</dataInputRefs>
+        <dataInputRefs>LoadTRTaskAction</dataInputRefs>
+        <dataInputRefs>DeployJenkinsJobUrl</dataInputRefs>
+        <dataInputRefs>DeployJenkinsJobResult</dataInputRefs>
+        <dataInputRefs>DeployJenkinsJobDelay</dataInputRefs>
+        <dataInputRefs>LoadTRFailedDescription</dataInputRefs>
+        <dataInputRefs>LoadTRFailedStatus</dataInputRefs>
+        <dataInputRefs>LoadTRFailedAction</dataInputRefs>
+        <dataInputRefs>LoadTRSucceedDescription</dataInputRefs>
+        <dataInputRefs>LoadTRSucceedStatus</dataInputRefs>
+        <dataInputRefs>LoadTRSucceedAction</dataInputRefs>
+        <dataInputRefs>ReleaseCRCloseAction</dataInputRefs>
+      </inputSet>
+      <outputSet>
+        <dataOutputRefs>ReleaseCRCreationResult</dataOutputRefs>
+        <dataOutputRefs>ReleaseCRRecordId</dataOutputRefs>
+        <dataOutputRefs>LoadTRTaskResult</dataOutputRefs>
+        <dataOutputRefs>LoadTRRecordId</dataOutputRefs>
+        <dataOutputRefs>DeployJenkinsJobExitStatus</dataOutputRefs>
+        <dataOutputRefs>LoadTRFailedResult</dataOutputRefs>
+        <dataOutputRefs>LoadTRSucceedResult</dataOutputRefs>
+        <dataOutputRefs>ReleaseCRCloseResult</dataOutputRefs>
+      </outputSet>
+    </ioSpecification>
+
+
+
+    <startEvent id="Start" name="START" flowable:formFieldValidation="true"></startEvent>
+    <userTask id="CRCreation" name="winaproach" flowable:formFieldValidation="true">
+      <ioSpecification>
+        <dataInput id="ReleaseCRTitle_taskCRCreation" name="record_title" itemSubjectRef="xsd:string"/>
+        <dataInput id="ReleaseCRDescription_taskCRCreation" name="record_description" itemSubjectRef="xsd:string"/>
+        <dataInput id="ReleaseCRAssigneeName_taskCRCreation" name="record_assignee_name" itemSubjectRef="xsd:string"/>
+        <dataInput id="ReleaseCRAssigneeGroup_taskCRCreation" name="record_assignee_group" itemSubjectRef="xsd:string"/>
+        <dataInput id="ReleaseCRLoggerName_taskCRCreation" name="record_logger_name" itemSubjectRef="xsd:string"/>
+        <dataInput id="ReleaseCRLoggerGroup_taskCRCreation" name="record_logger_group" itemSubjectRef="xsd:string"/>
+        <dataInput id="ReleaseCRAction_taskCRCreation" name="task_action" itemSubjectRef="xsd:string"/>
+
+        <dataOutput id="ReleaseCRCreationResult_taskCRCreation" name="task_result" itemSubjectRef="xsd:string"/>
+        <dataOutput id="ReleaseCRRecordId_taskCRCreation" name="task_record_id" itemSubjectRef="xsd:string"/>
+
+        <inputSet>
+          <dataInputRefs>ReleaseCRTitle_taskCRCreation</dataInputRefs>
+          <dataInputRefs>ReleaseCRDescription_taskCRCreation</dataInputRefs>
+          <dataInputRefs>ReleaseCRAssigneeName_taskCRCreation</dataInputRefs>
+          <dataInputRefs>ReleaseCRAssigneeGroup_taskCRCreation</dataInputRefs>
+          <dataInputRefs>ReleaseCRLoggerName_taskCRCreation</dataInputRefs>
+          <dataInputRefs>ReleaseCRLoggerGroup_taskCRCreation</dataInputRefs>
+          <dataInputRefs>ReleaseCRAction_taskCRCreation</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>ReleaseCRCreationResult_taskCRCreation</dataOutputRefs>
+          <dataOutputRefs>ReleaseCRRecordId_taskCRCreation</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+
+      <dataInputAssociation>
+        <sourceRef>ReleaseCRTitle</sourceRef>
+        <targetRef>ReleaseCRTitle_taskCRCreation</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>ReleaseCRDescription</sourceRef>
+        <targetRef>ReleaseCRDescription_taskCRCreation</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>ReleaseCRAssigneeName</sourceRef>
+        <targetRef>ReleaseCRAssigneeName_taskCRCreation</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>ReleaseCRAssigneeGroup</sourceRef>
+        <targetRef>ReleaseCRAssigneeGroup_taskCRCreation</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>ReleaseCRAssigneeName</sourceRef>
+        <targetRef>ReleaseCRLoggerName_taskCRCreation</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>ReleaseCRAssigneeGroup</sourceRef>
+        <targetRef>ReleaseCRLoggerGroup_taskCRCreation</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>ReleaseCRAction</sourceRef>
+        <targetRef>ReleaseCRAction_taskCRCreation</targetRef>
+      </dataInputAssociation>
+
+      <dataOutputAssociation>
+        <sourceRef>ReleaseCRCreationResult_taskCRCreation</sourceRef>
+        <targetRef>ReleaseCRCreationResult</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>ReleaseCRRecordId_taskCRCreation</sourceRef>
+        <targetRef>ReleaseCRRecordId</targetRef>
+      </dataOutputAssociation>
+    </userTask>
+
+    <userTask id="TRCreation" name="winaproach" flowable:formFieldValidation="true">
+      <ioSpecification>
+        <dataInput id="LoadTRTitle_taskTRCreation" name="record_title" itemSubjectRef="xsd:string"/>
+        <dataInput id="LoadTRParentId_taskTRCreation" name="task_record_parent_id" itemSubjectRef="xsd:string"/>
+        <dataInput id="LoadTRDescription_taskTRCreation" name="record_description" itemSubjectRef="xsd:string"/>
+        <dataInput id="LoadTRAssigneeName_taskTRCreation" name="record_assignee_name" itemSubjectRef="xsd:string"/>
+        <dataInput id="LoadTRAssigneeGroup_taskTRCreation" name="record_assignee_group" itemSubjectRef="xsd:string"/>
+        <dataInput id="LoadTRLoggerName_taskTRCreation" name="record_logger_name" itemSubjectRef="xsd:string"/>
+        <dataInput id="LoadTRLoggerGroup_taskTRCreation" name="record_logger_group" itemSubjectRef="xsd:string"/>
+        <dataInput id="LoadTRTaskAction_taskTRCreation" name="task_action" itemSubjectRef="xsd:string"/>
+        <dataOutput id="LoadTRTaskResult_taskTRCreation" name="task_result" itemSubjectRef="xsd:string"/>
+        <dataOutput id="LoadTRRecordId_taskTRCreation" name="task_record_id" itemSubjectRef="xsd:string"/>
+
+        <inputSet>
+          <dataInputRefs>LoadTRTitle_taskTRCreation</dataInputRefs>
+          <dataInputRefs>LoadTRParentId_taskTRCreation</dataInputRefs>
+          <dataInputRefs>LoadTRDescription_taskTRCreation</dataInputRefs>
+          <dataInputRefs>LoadTRAssigneeName_taskTRCreation</dataInputRefs>
+          <dataInputRefs>LoadTRAssigneeGroup_taskTRCreation</dataInputRefs>
+          <dataInputRefs>LoadTRLoggerName_taskTRCreation</dataInputRefs>
+          <dataInputRefs>LoadTRLoggerGroup_taskTRCreation</dataInputRefs>
+          <dataInputRefs>LoadTRTaskAction_taskTRCreation</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>LoadTRTaskResult_taskTRCreation</dataOutputRefs>
+          <dataOutputRefs>LoadTRRecordId_taskTRCreation</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+
+      <dataInputAssociation>
+        <sourceRef>LoadTRTitle</sourceRef>
+        <targetRef>LoadTRTitle_taskTRCreation</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>ReleaseCRRecordId</sourceRef>
+        <targetRef>LoadTRParentId_taskTRCreation</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>LoadTRDescription</sourceRef>
+        <targetRef>LoadTRDescription_taskTRCreation</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>LoadTRAssigneeName</sourceRef>
+        <targetRef>LoadTRAssigneeName_taskTRCreation</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>LoadTRAssigneeGroup</sourceRef>
+        <targetRef>LoadTRAssigneeGroup_taskTRCreation</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>LoadTRAssigneeName</sourceRef>
+        <targetRef>LoadTRLoggerName_taskTRCreation</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>LoadTRAssigneeGroup</sourceRef>
+        <targetRef>LoadTRLoggerGroup_taskTRCreation</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>LoadTRTaskAction</sourceRef>
+        <targetRef>LoadTRTaskAction_taskTRCreation</targetRef>
+      </dataInputAssociation>
+
+      <dataOutputAssociation>
+        <sourceRef>LoadTRTaskResult_taskTRCreation</sourceRef>
+        <targetRef>LoadTRTaskResult</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>LoadTRRecordId_taskTRCreation</sourceRef>
+        <targetRef>LoadTRRecordId</targetRef>
+      </dataOutputAssociation>
+    </userTask>
+
+    <userTask id="Deploy" name="jenkins" flowable:formFieldValidation="true">
+      <ioSpecification>
+        <dataInput id="DeployJenkinsJobUrl_task" name="urlJenkinsJob" itemSubjectRef="xsd:string"/>
+        <dataInput id="DeployJenkinsJobResult_task" name="exit_status" itemSubjectRef="xsd:string"/>
+        <dataInput id="DeployJenkinsJobDelay_task" name="delay" itemSubjectRef="xsd:string"/>
+        <dataOutput id="DeployJenkinsJobExitStatus_task" name="JOB_STATUS" itemSubjectRef="xsd:string"/>
+        <inputSet>
+          <dataInputRefs>DeployJenkinsJobUrl_task</dataInputRefs>
+          <dataInputRefs>DeployJenkinsJobResult_task</dataInputRefs>
+          <dataInputRefs>DeployJenkinsJobDelay_task</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>DeployJenkinsJobExitStatus_task</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>DeployJenkinsJobUrl</sourceRef>
+        <targetRef>DeployJenkinsJobUrl_task</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>DeployJenkinsJobResult</sourceRef>
+        <targetRef>DeployJenkinsJobResult_task</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>DeployJenkinsJobDelay</sourceRef>
+        <targetRef>DeployJenkinsJobDelay_task</targetRef>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>DeployJenkinsJobExitStatus_task</sourceRef>
+        <targetRef>DeployJenkinsJobExitStatus</targetRef>
+      </dataOutputAssociation>
+    </userTask>
+
+    <userTask id="CloseTRLoadFailure" name="winaproach" flowable:formFieldValidation="true">
+      <ioSpecification>
+        <dataInput id="LoadTRRecordId_taskCloseTRLoadFailure" name="record_id" itemSubjectRef="xsd:string"/>
+        <dataInput id="LoadTRFailedDescription_taskCloseTRLoadFailure" name="record_description" itemSubjectRef="xsd:string"/>
+        <dataInput id="LoadTRFailedStatus_taskCloseTRLoadFailure" name="record_status" itemSubjectRef="xsd:string"/>
+        <dataInput id="LoadTRFailedAction_taskCloseTRLoadFailure" name="task_action" itemSubjectRef="xsd:string"/>
+        <dataOutput id="LoadTRFailedResult_taskCloseTRLoadFailure" name="task_result" itemSubjectRef="xsd:string"/>
+        <dataOutput id="LoadTRFailedRecordId_taskCloseTRLoadFailure" name="task_record_id" itemSubjectRef="xsd:string"/>
+
+        <inputSet>
+          <dataInputRefs>LoadTRRecordId_taskCloseTRLoadFailure</dataInputRefs>
+          <dataInputRefs>LoadTRFailedDescription_taskCloseTRLoadFailure</dataInputRefs>
+          <dataInputRefs>LoadTRFailedStatus_taskCloseTRLoadFailure</dataInputRefs>
+          <dataInputRefs>LoadTRFailedAction_taskCloseTRLoadFailure</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>LoadTRFailedResult_taskCloseTRLoadFailure</dataOutputRefs>
+          <dataOutputRefs>LoadTRFailedRecordId_taskCloseTRLoadFailure</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+
+      <dataInputAssociation>
+        <sourceRef>LoadTRRecordId</sourceRef>
+        <targetRef>LoadTRRecordId_taskCloseTRLoadFailure</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>LoadTRFailedDescription</sourceRef>
+        <targetRef>LoadTRFailedDescription_taskCloseTRLoadFailure</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>LoadTRFailedStatus</sourceRef>
+        <targetRef>LoadTRFailedStatus_taskCloseTRLoadFailure</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>LoadTRFailedAction</sourceRef>
+        <targetRef>LoadTRFailedAction_taskCloseTRLoadFailure</targetRef>
+      </dataInputAssociation>
+
+      <dataOutputAssociation>
+        <sourceRef>LoadTRFailedResult_taskCloseTRLoadFailure</sourceRef>
+        <targetRef>LoadTRFailedResult</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>LoadTRFailedRecordId_taskCloseTRLoadFailure</sourceRef>
+        <targetRef>LoadTRRecordId</targetRef>
+      </dataOutputAssociation>
+    </userTask>
+
+    <userTask id="CloseCR" name="winaproach" flowable:formFieldValidation="true">
+      <ioSpecification>
+        <dataInput id="ReleaseCRRecordId_taskCloseCR" name="record_id" itemSubjectRef="xsd:string"/>
+        <dataInput id="ReleaseCRCloseAction_taskCloseCR" name="task_action" itemSubjectRef="xsd:string"/>
+        <dataOutput id="ReleaseCRCloseResult_taskCloseCR" name="task_result" itemSubjectRef="xsd:string"/>
+        <dataOutput id="ReleaseCRRecordIdOutput_taskCloseCR" name="task_record_id" itemSubjectRef="xsd:string"/>
+
+        <inputSet>
+          <dataInputRefs>ReleaseCRRecordId_taskCloseCR</dataInputRefs>
+          <dataInputRefs>ReleaseCRCloseAction_taskCloseCR</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>ReleaseCRCloseResult_taskCloseCR</dataOutputRefs>
+          <dataOutputRefs>ReleaseCRRecordIdOutput_taskCloseCR</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+
+      <dataInputAssociation>
+        <sourceRef>ReleaseCRRecordId</sourceRef>
+        <targetRef>ReleaseCRRecordId_taskCloseCR</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>ReleaseCRCloseAction</sourceRef>
+        <targetRef>ReleaseCRCloseAction_taskCloseCR</targetRef>
+      </dataInputAssociation>
+
+      <dataOutputAssociation>
+        <sourceRef>ReleaseCRCloseResult_taskCloseCR</sourceRef>
+        <targetRef>ReleaseCRCloseResult</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>ReleaseCRRecordIdOutput_taskCloseCR</sourceRef>
+        <targetRef>ReleaseCRRecordId</targetRef>
+      </dataOutputAssociation>
+    </userTask>
+
+    <userTask id="CloseTRLoadSuccess" name="winaproach" flowable:formFieldValidation="true">
+      <ioSpecification>
+        <dataInput id="LoadTRRecordId_taskCloseTRLoadSuccess" name="record_id" itemSubjectRef="xsd:string"/>
+        <dataInput id="LoadTRSucceedDescription_taskCloseTRLoadSuccess" name="record_description" itemSubjectRef="xsd:string"/>
+        <dataInput id="LoadTRSucceedStatus_taskCloseTRLoadSuccess" name="record_status" itemSubjectRef="xsd:string"/>
+        <dataInput id="LoadTRSucceedAction_taskCloseTRLoadSuccess" name="task_action" itemSubjectRef="xsd:string"/>
+        <dataOutput id="LoadTRSucceedResult_taskCloseTRLoadSuccess" name="task_result" itemSubjectRef="xsd:string"/>
+        <dataOutput id="LoadTRSucceedRecordId_taskCloseTRLoadSuccess" name="task_record_id" itemSubjectRef="xsd:string"/>
+
+        <inputSet>
+          <dataInputRefs>LoadTRRecordId_taskCloseTRLoadSuccess</dataInputRefs>
+          <dataInputRefs>LoadTRSucceedDescription_taskCloseTRLoadSuccess</dataInputRefs>
+          <dataInputRefs>LoadTRSucceedStatus_taskCloseTRLoadSuccess</dataInputRefs>
+          <dataInputRefs>LoadTRSucceedAction_taskCloseTRLoadSuccess</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>LoadTRSucceedResult_taskCloseTRLoadSuccess</dataOutputRefs>
+          <dataOutputRefs>LoadTRSucceedRecordId_taskCloseTRLoadSuccess</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+
+      <dataInputAssociation>
+        <sourceRef>LoadTRRecordId</sourceRef>
+        <targetRef>LoadTRRecordId_taskCloseTRLoadSuccess</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>LoadTRSucceedDescription</sourceRef>
+        <targetRef>LoadTRSucceedDescription_taskCloseTRLoadSuccess</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>LoadTRSucceedStatus</sourceRef>
+        <targetRef>LoadTRSucceedStatus_taskCloseTRLoadSuccess</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>LoadTRSucceedAction</sourceRef>
+        <targetRef>LoadTRSucceedAction_taskCloseTRLoadSuccess</targetRef>
+      </dataInputAssociation>
+
+      <dataOutputAssociation>
+        <sourceRef>LoadTRSucceedResult_taskCloseTRLoadSuccess</sourceRef>
+        <targetRef>LoadTRSucceedResult</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>LoadTRSucceedRecordId_taskCloseTRLoadSuccess</sourceRef>
+        <targetRef>LoadTRRecordId</targetRef>
+      </dataOutputAssociation>
+    </userTask>
+
+    <endEvent id="Success" name="success"></endEvent>
+    <endEvent id="Failed" name="FAILURE">
+      <errorEventDefinition></errorEventDefinition>
+    </endEvent>
+    <sequenceFlow id="CreateReleaseCR" name="Create Release CR" sourceRef="Start" targetRef="CRCreation"></sequenceFlow>
+    <sequenceFlow id="CreateLoadTR" name="Create Load TR" sourceRef="CRCreation" targetRef="TRCreation"></sequenceFlow>
+    <sequenceFlow id="RunDeployActions" name="Deploy" sourceRef="TRCreation" targetRef="Deploy"></sequenceFlow>
+    <sequenceFlow id="DeployFailed" name="Deploy Failed" sourceRef="Deploy" targetRef="CloseTRLoadFailure">
+      <conditionExpression xsi:type="tFormalExpression">${DeployJenkinsJobExitStatus == "FAILURE" || DeployJenkinsJobExitStatus == "ABORTED" }</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="DeploySucceeded" name="Deploy Succeeded" sourceRef="Deploy" targetRef="CloseTRLoadSuccess">
+      <conditionExpression xsi:type="tFormalExpression">${DeployJenkinsJobExitStatus == "SUCCESS"}</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="CloseCRDS" name="Close CR" sourceRef="CloseTRLoadSuccess" targetRef="CloseCR"></sequenceFlow>
+    <sequenceFlow id="CloseCRDF" name="Close CR" sourceRef="CloseTRLoadFailure" targetRef="CloseCR"></sequenceFlow>
+    <sequenceFlow id="ReleaseSucceeded" name="Release Completed" sourceRef="CloseCR" targetRef="Success">
+      <conditionExpression xsi:type="tFormalExpression">${DeployJenkinsJobExitStatus == "SUCCESS"}</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="ReleaseFailed" name="Release Failed" sourceRef="CloseCR" targetRef="Failed">
+      <conditionExpression xsi:type="tFormalExpression">${DeployJenkinsJobExitStatus == "FAILURE" || DeployJenkinsJobExitStatus == "ABORTED" }</conditionExpression>
+    </sequenceFlow>
+  </process>
+
+
+
+
+
+
+
+
+
+
+
+
+<bpmndi:BPMNDiagram id="BPMNDiagram_S38WinAproach">
+    <bpmndi:BPMNPlane id="BPMNPlane_S38WinAproach" bpmnElement="S38WinAproach">
+      <bpmndi:BPMNShape id="BPMNShape_Start" bpmnElement="Start">
+        <omgdc:Bounds x="160" y="145" width="30" height="30" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="157" y="175" width="36" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_CRCreation" bpmnElement="CRCreation">
+        <omgdc:Bounds x="280" y="120" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_TRCreation" bpmnElement="TRCreation">
+        <omgdc:Bounds x="475" y="120" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_Deploy" bpmnElement="Deploy">
+        <omgdc:Bounds x="640" y="120" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_CloseTRLoadFailure" bpmnElement="CloseTRLoadFailure">
+        <omgdc:Bounds x="790" y="45" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_CloseCR" bpmnElement="CloseCR">
+        <omgdc:Bounds x="930" y="120" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_CloseTRLoadSuccess" bpmnElement="CloseTRLoadSuccess">
+        <omgdc:Bounds x="790" y="200" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_Success" bpmnElement="Success">
+        <omgdc:Bounds x="1106" y="71" width="28" height="28" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1100" y="47" width="40" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_Failed" bpmnElement="Failed">
+        <omgdc:Bounds x="1106" y="226" width="28" height="28" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1097" y="254" width="46" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_CloseCRDS" bpmnElement="CloseCRDS">
+        <omgdi:waypoint x="890" y="240" />
+        <omgdi:waypoint x="980" y="240" />
+        <omgdi:waypoint x="980" y="200" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="926" y="253" width="48" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_DeploySucceeded" bpmnElement="DeploySucceeded">
+        <omgdi:waypoint x="700" y="200" />
+        <omgdi:waypoint x="700" y="240" />
+        <omgdi:waypoint x="790" y="240" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="697" y="246" width="56" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_CreateLoadTR" bpmnElement="CreateLoadTR">
+        <omgdi:waypoint x="380" y="160" />
+        <omgdi:waypoint x="475" y="160" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="385" y="135" width="80" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_RunDeployActions" bpmnElement="RunDeployActions">
+        <omgdi:waypoint x="575" y="160" />
+        <omgdi:waypoint x="640" y="160" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="592" y="135" width="35" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_ReleaseSucceeded" bpmnElement="ReleaseSucceeded">
+        <omgdi:waypoint x="1030" y="160" />
+        <omgdi:waypoint x="1120" y="160" />
+        <omgdi:waypoint x="1120" y="99" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1143" y="106" width="54" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_ReleaseFailed" bpmnElement="ReleaseFailed">
+        <omgdi:waypoint x="1030" y="160" />
+        <omgdi:waypoint x="1120" y="160" />
+        <omgdi:waypoint x="1120" y="226" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1133" y="193" width="74" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_DeployFailed" bpmnElement="DeployFailed">
+        <omgdi:waypoint x="690" y="120" />
+        <omgdi:waypoint x="690" y="85" />
+        <omgdi:waypoint x="790" y="85" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="691" y="61" width="68" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_CloseCRDF" bpmnElement="CloseCRDF">
+        <omgdi:waypoint x="890" y="85" />
+        <omgdi:waypoint x="980" y="85" />
+        <omgdi:waypoint x="980" y="120" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="926" y="61" width="48" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_CreateReleaseCR" bpmnElement="CreateReleaseCR">
+        <omgdi:waypoint x="190" y="160" />
+        <omgdi:waypoint x="280" y="160" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="197" y="128" width="77" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
