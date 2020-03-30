@@ -1,8 +1,8 @@
-import { AfterContentInit, Component, ElementRef, Input, OnChanges,
+import { AfterContentInit, Component, ElementRef, Input, OnChanges, AfterViewChecked,
   OnDestroy, Output, ViewChild, SimpleChanges, EventEmitter, AfterViewInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, catchError, retry } from 'rxjs/operators';
-import * as BpmnJS from 'bpmn-js/dist/bpmn-modeler.production.min.js';
+import * as BpmnJS from 'bpmn-js/dist/bpmn-navigated-viewer.development.js';
 import { importDiagram } from './rx';
 import { throwError } from 'rxjs';
 
@@ -11,11 +11,11 @@ import { throwError } from 'rxjs';
   templateUrl: './bpmnworkflow.component.html',
   styleUrls: ['./bpmnworkflow.component.css']
 })
-export class BPMNWorkflowComponent implements AfterContentInit, AfterViewInit, OnChanges, OnDestroy {
+export class BPMNWorkflowComponent implements AfterContentInit, AfterViewInit, OnChanges, OnDestroy, AfterViewChecked {
   private bpmnJS: BpmnJS;
 
   @ViewChild('flowDiagram') private flowDiagram: ElementRef;
-  @Output() private importDone: EventEmitter<any> = new EventEmitter();
+  @Output() public importDone: EventEmitter<any> = new EventEmitter();
   @Input() private url: string;
 
   constructor(private http: HttpClient) {
@@ -28,12 +28,22 @@ export class BPMNWorkflowComponent implements AfterContentInit, AfterViewInit, O
   }
 
   ngAfterContentInit(): void {
-    console.log('After Content INIT');
+    console.log('ngAfterContentInit');
   }
 
   ngAfterViewInit() {
-    console.log('After View INIT');
+    console.log('ngAfterViewInit');
     this.bpmnJS.attachTo(this.flowDiagram.nativeElement);
+  }
+
+  ngAfterViewChecked() {
+    console.log('ngAfterViewChecked');
+    this.bpmnJS.get('canvas').addMarker('QCPDeploy', 'completed');
+    this.bpmnJS.get('overlays').clear();
+    this.bpmnJS.get('overlays').add('QCPDeploy', {
+      position: { bottom: 0, right: 0},
+      html: '<div class="task-output">jenkins console:<br /><a>jenkins_job_url</a></div>'
+    });
   }
 
   ngOnChanges(changes: SimpleChanges) {
