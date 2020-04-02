@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  public editMode = false;
   title = 'bpmn-angular-app';
   diagramUrl = './assets/s38-demo-A2ETool.bpmn20.xml';
 
@@ -28,4 +29,9 @@ export class AppComponent {
 
     this.importError = error;
   }
+
+  toggle() {
+    this.editMode = !this.editMode;
+  }
 }
+

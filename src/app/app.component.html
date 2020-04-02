@@ -1,8 +1,11 @@
-<div class="diagram-parent">
+<div>Edit <toggle [on]="true" (toggled)="toggle()"></toggle></div>
+<div class="diagram-parent" *ngIf="!editMode">
   <app-bpmnworkflow [url]="diagramUrl" (importDone)="handleImported($event)"></app-bpmnworkflow>
-
   <div class="import-error" *ngIf="importError">
     <strong>Failed to render diagram: </strong>
     {{ importError.message }}
   </div>
+</div>
+<div class="edit-diagram" *ngIf="editMode">
+  <app-bpmnworkflow-modeler></app-bpmnworkflow-modeler>
 </div>
